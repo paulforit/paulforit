@@ -1,1 +1,94 @@
+---
+
+# GreenPeak Landscaping Security Assessment and Compliance Case Study  
+
+## **Scenario**  
+**GreenPeak Landscaping** is a mid-sized landscaping company based in Canada. The company provides residential and commercial landscaping services, with operations extending to online consultations and product sales. Their IT department supports in-office operations, field team devices, and an online platform that services customers across Canada and the U.S.  
+
+As GreenPeak has expanded, their IT infrastructure has grown significantly. This includes mobile devices for field staff, IoT-enabled equipment, and an e-commerce platform. However, the CEO has raised concerns about the company's ability to secure sensitive customer data, meet compliance requirements, and prevent operational disruptions.  
+
+To address these concerns, the IT manager initiated an internal audit using the **NIST Cybersecurity Framework (CSF)** to assess the company's security posture, identify vulnerabilities, and ensure compliance with industry regulations like **PCI DSS** and Canadian **PIPEDA** laws.  
+
+---
+
+## **Scope, Goals, and Risk Assessment Report**  
+
+### **Scope**  
+The scope includes all IT assets, systems, and processes critical to GreenPeak's operations, both on-premises and in the field. This includes:  
+1. End-user devices (laptops, smartphones, tablets).  
+2. IoT-enabled landscaping tools.  
+3. The e-commerce platform and its payment processing systems.  
+4. Customer and employee data storage systems.  
+5. Remote working infrastructure for the administrative team.  
+
+### **Goals**  
+1. Identify gaps in existing controls and compliance measures.  
+2. Develop recommendations to improve the company's security posture and meet regulatory standards.  
+
+---
+
+## **Risk Assessment**  
+
+### **Risk Description**  
+GreenPeak Landscaping lacks a centralized management system for tracking IT assets and implementing security updates. Employees have excessive access to sensitive data, and there is no documented plan for disaster recovery or incident response.  
+
+### **Risk Score**  
+- **Risk Score**: 9 (on a 1-10 scale).  
+- **Impact Assessment**: High. The company faces financial, reputational, and operational risks due to inadequate controls and potential non-compliance with regulations.  
+
+---
+
+## **Controls Assessment Checklist**  
+
+| **Yes / No / ?** | **Control**                  | **Explanation**                                                                                 |
+|------------------|-----------------------------|-------------------------------------------------------------------------------------------------|
+| No               | **Least Privilege**         | Employees have broad access to customer and financial data, increasing the risk of insider threats. |
+| No               | **Disaster Recovery Plan**  | No formal disaster recovery plan is in place to restore services during an outage or cyberattack. |
+| Yes              | **Firewall**                | Firewalls are deployed and regularly monitored by IT staff.                                      |
+| ?                | **Password Policies**       | Policies exist but require updates to enforce strong, unique passwords.                          |
+| Yes              | **Antivirus**               | Antivirus is installed on all devices and updated automatically.                                |
+| No               | **Backups**                 | There is no regular backup schedule for critical business systems and customer data.            |
+| No               | **Encryption**              | Data, including payment and customer information, is not encrypted at rest or in transit.       |
+| No               | **IDS/IPS**                 | Intrusion detection and prevention systems are not deployed.                                    |
+| Yes              | **Physical Security**       | Office premises are secured with locks and surveillance systems.                                |
+| Yes              | **CCTV**                    | Cameras are operational and monitored by the security team.                                     |
+
+---
+
+## **Compliance Checklist**  
+
+### **PCI DSS**  
+
+| **Yes / No / ?** | **Best Practice**                                     | **Explanation**                                                                                     |
+|------------------|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| No               | Authorized users access credit card data              | Employees have unnecessary access to payment systems.                                               |
+| No               | Credit card data stored securely                      | Data is stored without encryption in a shared database.                                             |
+| No               | Encryption protocols for payment systems              | Encryption has not been implemented for credit card transactions.                                   |
+
+### **PIPEDA**  
+
+| **Yes / No / ?** | **Best Practice**                                     | **Explanation**                                                                                     |
+|------------------|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| No               | Protect customer data from unauthorized access        | Excessive access permissions increase the likelihood of data breaches.                              |
+| Yes              | Maintain privacy policies                             | Privacy policies are in place and communicated to customers.                                        |
+| No               | Secure customer data during transit and storage       | Data is transmitted over insecure channels and stored without encryption.                           |
+
+---
+
+## **Recommendations**  
+
+To address identified gaps, GreenPeak Landscaping should implement the following:  
+
+1. **Least Privilege Access**: Enforce role-based access controls to restrict employee access to sensitive data.  
+2. **Disaster Recovery Plan**: Develop and test a disaster recovery and business continuity plan.  
+3. **Encryption**: Implement encryption protocols for sensitive data, both at rest and in transit.  
+4. **Password Policies**: Update password policies to enforce complexity, uniqueness, and expiration.  
+5. **Regular Backups**: Establish a comprehensive backup plan using incremental and full backup schedules.  
+6. **Intrusion Detection Systems (IDS)**: Deploy IDS/IPS to monitor and respond to potential network intrusions.  
+7. **Compliance Training**: Train employees on regulatory compliance and security best practices.  
+
+By addressing these areas, GreenPeak Landscaping can significantly improve its security posture and ensure compliance with relevant standards and regulations.  
+
+---
+
 
