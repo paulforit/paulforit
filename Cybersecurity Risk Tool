@@ -1,0 +1,109 @@
+import json
+
+# Cybersecurity Risk Assessment Tool
+
+def display_banner():
+    print("""
+    #############################################
+    # Cybersecurity Risk Assessment Tool       #
+    # Identify vulnerabilities and recommend   #
+    # mitigation strategies for organizations  #
+    #############################################
+    """)
+
+def get_organization_info():
+    print("Enter the organization's information:")
+    org_name = input("Organization Name: ")
+    industry = input("Industry: ")
+    size = input("Number of Employees: ")
+    return {
+        "name": org_name,
+        "industry": industry,
+        "size": size
+    }
+
+def assess_controls():
+    print("\nCybersecurity Controls Assessment\n")
+    controls = {
+        "least_privilege": "Does the organization enforce least privilege access? (yes/no): ",
+        "firewall": "Does the organization have an active and monitored firewall? (yes/no): ",
+        "antivirus": "Is antivirus software installed and regularly updated? (yes/no): ",
+        "password_policy": "Are strong password policies enforced? (yes/no): ",
+        "backup": "Are regular backups performed and verified? (yes/no): ",
+        "encryption": "Is sensitive data encrypted at rest and in transit? (yes/no): ",
+        "ids": "Does the organization use intrusion detection/prevention systems (IDS/IPS)? (yes/no): ",
+        "disaster_recovery": "Does the organization have a disaster recovery plan? (yes/no): "
+    }
+    results = {}
+    for control, question in controls.items():
+        response = input(question).strip().lower()
+        results[control] = response == 'yes'
+    return results
+
+def evaluate_risks(controls):
+    vulnerabilities = []
+
+    if not controls.get("least_privilege"):
+        vulnerabilities.append("Least privilege access is not enforced, increasing insider threat risks.")
+    if not controls.get("firewall"):
+        vulnerabilities.append("No active firewall leaves the organization open to external attacks.")
+    if not controls.get("antivirus"):
+        vulnerabilities.append("Outdated or missing antivirus software makes endpoints vulnerable.")
+    if not controls.get("password_policy"):
+        vulnerabilities.append("Weak password policies increase the likelihood of unauthorized access.")
+    if not controls.get("backup"):
+        vulnerabilities.append("Lack of regular backups risks data loss in case of an incident.")
+    if not controls.get("encryption"):
+        vulnerabilities.append("Unencrypted data is vulnerable to interception and theft.")
+    if not controls.get("ids"):
+        vulnerabilities.append("No IDS/IPS makes it harder to detect or prevent intrusions.")
+    if not controls.get("disaster_recovery"):
+        vulnerabilities.append("No disaster recovery plan jeopardizes business continuity.")
+
+    return vulnerabilities
+
+def recommend_mitigations(vulnerabilities):
+    recommendations = {
+        "Least privilege access is not enforced": "Implement role-based access control (RBAC) to restrict access.",
+        "No active firewall": "Deploy and monitor a firewall to block unauthorized traffic.",
+        "Outdated or missing antivirus software": "Install and regularly update antivirus software.",
+        "Weak password policies": "Enforce strong passwords and implement multi-factor authentication (MFA).",
+        "Lack of regular backups": "Establish a regular backup schedule and verify backups.",
+        "Unencrypted data": "Implement encryption for data at rest and in transit.",
+        "No IDS/IPS": "Deploy intrusion detection/prevention systems to monitor network activity.",
+        "No disaster recovery plan": "Develop and test a disaster recovery and business continuity plan."
+    }
+    return [recommendations[vuln] for vuln in vulnerabilities if vuln in recommendations]
+
+def generate_report(organization, vulnerabilities, mitigations):
+    report = {
+        "organization": organization,
+        "vulnerabilities": vulnerabilities,
+        "mitigation_strategies": mitigations
+    }
+    file_name = f"{organization['name'].replace(' ', '_')}_Risk_Assessment_Report.json"
+    with open(file_name, "w") as report_file:
+        json.dump(report, report_file, indent=4)
+    print(f"\nRisk Assessment Report generated successfully! File saved as {file_name}\n")
+    print("\nSample Output:")
+    print(json.dumps(report, indent=4))
+
+def main():
+    display_banner()
+    organization = get_organization_info()
+    controls = assess_controls()
+    vulnerabilities = evaluate_risks(controls)
+    mitigations = recommend_mitigations(vulnerabilities)
+
+    print("\nIdentified Vulnerabilities:")
+    for i, vuln in enumerate(vulnerabilities, start=1):
+        print(f"{i}. {vuln}")
+
+    print("\nRecommended Mitigation Strategies:")
+    for i, mitigation in enumerate(mitigations, start=1):
+        print(f"{i}. {mitigation}")
+
+    generate_report(organization, vulnerabilities, mitigations)
+
+if __name__ == "__main__":
+    main()
